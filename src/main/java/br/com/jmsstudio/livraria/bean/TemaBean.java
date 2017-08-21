@@ -1,17 +1,16 @@
 package br.com.jmsstudio.livraria.bean;
 
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Named;
 import java.io.Serializable;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-
-@ManagedBean
+@Named
 @SessionScoped
 public class TemaBean implements Serializable {
 	
 	private static final long serialVersionUID = 3740536135286026768L;
 	
-	private String tema = "vader";
+	private String tema = "afternoon";
 
 	public String getTema() {
 		return tema;

@@ -1,15 +1,15 @@
 package br.com.jmsstudio.livraria.bean;
 
-import java.io.Serializable;
-import java.util.List;
-
-import javax.faces.bean.ManagedBean;
-
 import br.com.jmsstudio.livraria.dao.DAO;
 import br.com.jmsstudio.livraria.modelo.Autor;
 
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Named;
+import java.io.Serializable;
+import java.util.List;
 
-@ManagedBean
+@Named
+@RequestScoped
 public class AutorBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;

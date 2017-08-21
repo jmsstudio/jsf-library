@@ -1,22 +1,19 @@
 package br.com.jmsstudio.livraria.bean;
 
+import br.com.jmsstudio.livraria.dao.DAO;
+import br.com.jmsstudio.livraria.modelo.Livro;
+import br.com.jmsstudio.livraria.modelo.Venda;
+import org.primefaces.model.chart.BarChartModel;
+import org.primefaces.model.chart.ChartSeries;
+
+import javax.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
-
-import org.primefaces.model.chart.BarChartModel;
-import org.primefaces.model.chart.ChartSeries;
-
-import br.com.jmsstudio.livraria.dao.DAO;
-import br.com.jmsstudio.livraria.modelo.Livro;
-import br.com.jmsstudio.livraria.modelo.Venda;
-
-@ManagedBean
-@ViewScoped
+@Named
+@javax.faces.view.ViewScoped
 public class VendasBean implements Serializable{
 
 

@@ -1,15 +1,16 @@
 package br.com.jmsstudio.livraria.bean;
 
-import java.io.Serializable;
-
-import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.context.FacesContext;
-
 import br.com.jmsstudio.livraria.dao.UsuarioDao;
 import br.com.jmsstudio.livraria.modelo.Usuario;
 
-@ManagedBean
+import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import javax.inject.Named;
+import java.io.Serializable;
+
+@Named
+@RequestScoped
 public class LoginBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
