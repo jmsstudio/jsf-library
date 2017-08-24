@@ -2,9 +2,10 @@ package br.com.jmsstudio.livraria.dao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaQuery;
+import java.io.Serializable;
 import java.util.List;
 
-public class DAO<T> {
+public class DAO<T> implements Serializable {
 
 	private final Class<T> classe;
     private final EntityManager em;
@@ -24,9 +25,6 @@ public class DAO<T> {
 
 		// commita a transacao
 		em.getTransaction().commit();
-
-		// fecha a entity manager
-		em.close();
 	}
 
 	public void remove(T t) {
@@ -35,7 +33,6 @@ public class DAO<T> {
 		em.remove(em.merge(t));
 
 		em.getTransaction().commit();
-		em.close();
 	}
 
 	public void atualiza(T t) {
@@ -44,7 +41,6 @@ public class DAO<T> {
 		em.merge(t);
 
 		em.getTransaction().commit();
-		em.close();
 	}
 
 	public List<T> listaTodos() {
@@ -53,20 +49,17 @@ public class DAO<T> {
 
 		List<T> lista = em.createQuery(query).getResultList();
 
-		em.close();
 		return lista;
 	}
 
 	public T buscaPorId(Integer id) {
 		T instancia = em.find(classe, id);
-		em.close();
 		return instancia;
 	}
 
 	public int contaTodos() {
 		long result = (Long) em.createQuery("select count(n) from livro n")
 				.getSingleResult();
-		em.close();
 
 		return (int) result;
 	}
@@ -78,7 +71,6 @@ public class DAO<T> {
 		List<T> lista = em.createQuery(query).setFirstResult(firstResult)
 				.setMaxResults(maxResults).getResultList();
 
-		em.close();
 		return lista;
 	}
 
