@@ -1,8 +1,8 @@
 package br.com.jmsstudio.livraria.bean;
 
-import br.com.jmsstudio.livraria.dao.DAO;
 import br.com.jmsstudio.livraria.modelo.Autor;
 import br.com.jmsstudio.livraria.modelo.Livro;
+import br.com.jmsstudio.persistence.dao.DAO;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;

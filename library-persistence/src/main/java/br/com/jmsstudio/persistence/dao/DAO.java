@@ -1,4 +1,4 @@
-package br.com.jmsstudio.livraria.dao;
+package br.com.jmsstudio.persistence.dao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaQuery;

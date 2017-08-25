@@ -1,7 +1,7 @@
 package br.com.jmsstudio.livraria.bean;
 
-import br.com.jmsstudio.livraria.dao.DAO;
 import br.com.jmsstudio.livraria.modelo.Autor;
+import br.com.jmsstudio.persistence.dao.DAO;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;

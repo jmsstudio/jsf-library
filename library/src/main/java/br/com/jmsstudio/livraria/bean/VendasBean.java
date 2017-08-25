@@ -1,8 +1,8 @@
 package br.com.jmsstudio.livraria.bean;
 
-import br.com.jmsstudio.livraria.dao.DAO;
 import br.com.jmsstudio.livraria.modelo.Livro;
 import br.com.jmsstudio.livraria.modelo.Venda;
+import br.com.jmsstudio.persistence.dao.DAO;
 import org.primefaces.model.chart.BarChartModel;
 import org.primefaces.model.chart.ChartSeries;
 

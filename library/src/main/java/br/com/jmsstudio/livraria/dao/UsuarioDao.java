@@ -26,8 +26,6 @@ public class UsuarioDao {
 			return false;
 		}
 		
-		em.close();
-		
 		return true;
 	}
 

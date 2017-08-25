@@ -1,4 +1,6 @@
-package br.com.jmsstudio.livraria.dao;
+package br.com.jmsstudio.persistence.factory;
+
+import br.com.jmsstudio.persistence.dao.DAO;
 
 import javax.enterprise.inject.Produces;
 import javax.enterprise.inject.spi.InjectionPoint;
