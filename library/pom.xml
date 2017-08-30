@@ -63,7 +63,7 @@
 
         <dependency>
             <groupId>br.com.jmsstudio</groupId>
-            <artifactId>library-persistence</artifactId>
+            <artifactId>library-utils</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
 

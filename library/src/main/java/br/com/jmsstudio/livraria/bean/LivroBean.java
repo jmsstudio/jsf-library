@@ -2,7 +2,8 @@ package br.com.jmsstudio.livraria.bean;
 
 import br.com.jmsstudio.livraria.modelo.Autor;
 import br.com.jmsstudio.livraria.modelo.Livro;
-import br.com.jmsstudio.persistence.dao.DAO;
+import br.com.jmsstudio.utils.dao.DAO;
+import br.com.jmsstudio.utils.transaction.Transactional;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
@@ -69,6 +70,7 @@ public class LivroBean implements Serializable {
 		System.out.println("Escrito por: " + autor.getNome());
 	}
 
+	@Transactional
 	public void gravar() {
 		System.out.println("Gravando livro " + this.livro.getTitulo());
 
@@ -88,6 +90,7 @@ public class LivroBean implements Serializable {
 		this.livro = new Livro();
 	}
 
+    @Transactional
 	public void remover(Livro livro) {
 		System.out.println("Removendo livro");
         livroDAO.remove(livro);

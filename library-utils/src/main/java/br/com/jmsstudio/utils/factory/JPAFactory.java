@@ -1,4 +1,4 @@
-package br.com.jmsstudio.persistence.factory;
+package br.com.jmsstudio.utils.factory;
 
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Disposes;

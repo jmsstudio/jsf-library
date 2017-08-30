@@ -1,7 +1,8 @@
 package br.com.jmsstudio.livraria.bean;
 
 import br.com.jmsstudio.livraria.modelo.Autor;
-import br.com.jmsstudio.persistence.dao.DAO;
+import br.com.jmsstudio.utils.dao.DAO;
+import br.com.jmsstudio.utils.transaction.Transactional;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -34,6 +35,7 @@ public class AutorBean implements Serializable{
 		this.autor = autorDAO.buscaPorId(autorId);
 	}
 
+	@Transactional
 	public String gravar() {
 		System.out.println("Gravando autor " + this.autor.getNome());
 
@@ -47,7 +49,8 @@ public class AutorBean implements Serializable{
 
 		return "livro?faces-redirect=true";
 	}
-	
+
+    @Transactional
 	public void remover(Autor autor) {
 		System.out.println("Removendo autor " + autor.getNome());
 		autorDAO.remove(autor);
