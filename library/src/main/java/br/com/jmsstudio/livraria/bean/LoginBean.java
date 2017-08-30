@@ -2,6 +2,8 @@ package br.com.jmsstudio.livraria.bean;
 
 import br.com.jmsstudio.livraria.dao.UsuarioDao;
 import br.com.jmsstudio.livraria.modelo.Usuario;
+import br.com.jmsstudio.utils.jsf.MessageHelper;
+import br.com.jmsstudio.utils.jsf.ScopeMap;
 
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
@@ -9,6 +11,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.util.Map;
 
 @Named
 @RequestScoped
@@ -18,6 +21,13 @@ public class LoginBean implements Serializable {
 
     @Inject
 	private UsuarioDao usuarioDao;
+
+    @Inject
+    @ScopeMap(ScopeMap.Scope.SESSION)
+	private Map<String, Object> sessionMap;
+
+    @Inject
+    private MessageHelper messageHelper;
 
 	private Usuario usuario = new Usuario();
 
@@ -30,20 +40,18 @@ public class LoginBean implements Serializable {
 		
 		FacesContext context = FacesContext.getCurrentInstance();
 		boolean existe = usuarioDao.existe(this.usuario);
-		if(existe ) {
-			context.getExternalContext().getSessionMap().put("usuarioLogado", this.usuario);
+		if (existe) {
+            sessionMap.put("usuarioLogado", this.usuario);
 			return "livro?faces-redirect=true";
 		}
 		
-		context.getExternalContext().getFlash().setKeepMessages(true);
-		context.addMessage(null, new FacesMessage("Usuário não encontrado"));
+		messageHelper.addMessage(null, new FacesMessage("Usuário não encontrado"));
 		
 		return "login?faces-redirect=true";
 	}
 	
 	public String deslogar() {
-		FacesContext context = FacesContext.getCurrentInstance();
-		context.getExternalContext().getSessionMap().remove("usuarioLogado");
+		sessionMap.remove("usuarioLogado");
 		return "login?faces-redirect=true";
 	}
 }

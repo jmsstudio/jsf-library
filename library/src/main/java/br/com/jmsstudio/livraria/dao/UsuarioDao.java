@@ -1,6 +1,7 @@
 package br.com.jmsstudio.livraria.dao;
 
 import br.com.jmsstudio.livraria.modelo.Usuario;
+import br.com.jmsstudio.utils.dao.Query;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -12,11 +13,11 @@ public class UsuarioDao {
 	@Inject
 	private EntityManager em;
 
+    @Inject
+    @Query("select u from Usuario u where u.email = :pEmail and u.senha = :pSenha")
+	private TypedQuery<Usuario> query;
+
 	public boolean existe(Usuario usuario) {
-		
-		TypedQuery<Usuario> query = em.createQuery(
-				  " select u from Usuario u "
-				+ " where u.email = :pEmail and u.senha = :pSenha", Usuario.class);
 		
 		query.setParameter("pEmail", usuario.getEmail());
 		query.setParameter("pSenha", usuario.getSenha());
