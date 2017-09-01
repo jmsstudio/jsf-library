@@ -15,25 +15,11 @@ public class TransactionManager implements Serializable {
     @Inject
     private EntityManager entityManager;
 
+    @Inject
+    private ITransactional transactional;
+
     @AroundInvoke
     public Object doWithTransaction(InvocationContext context) {
-        EntityTransaction transaction = entityManager.getTransaction();
-        System.out.println("Abrindo transação");
-        transaction.begin();
-
-        Object result = null;
-
-        try {
-            result = context.proceed();
-            transaction.commit();
-            System.out.println("Commitando transação");
-        } catch (Exception e) {
-            transaction.rollback();
-            System.out.println("Erro - rollback na transação");
-
-            throw new RuntimeException(e);
-        }
-
-        return result;
+        return transactional.doWithTransaction(context);
     }
 }

@@ -16,7 +16,7 @@ public class QueryFactory {
     private EntityManager entityManager;
 
     @Produces
-    @Query()
+    @Query
     public <X> TypedQuery<X> factory(InjectionPoint injectionPoint) {
         ParameterizedType type = (ParameterizedType) injectionPoint.getType();
 
