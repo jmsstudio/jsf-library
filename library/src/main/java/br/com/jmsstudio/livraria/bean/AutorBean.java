@@ -4,20 +4,18 @@ import br.com.jmsstudio.livraria.modelo.Autor;
 import br.com.jmsstudio.utils.dao.DAO;
 import br.com.jmsstudio.utils.transaction.Transactional;
 
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.inject.Model;
 import javax.inject.Inject;
-import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
 
-@Named
-@RequestScoped
+@Model
 public class AutorBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
 	@Inject
-	private DAO<Autor> autorDAO;
+	private DAO<Autor, Integer> autorDAO;
 
 	private Autor autor = new Autor();
 	

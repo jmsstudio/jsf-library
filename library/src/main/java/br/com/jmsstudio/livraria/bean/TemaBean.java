@@ -1,11 +1,10 @@
 package br.com.jmsstudio.livraria.bean;
 
-import javax.enterprise.context.SessionScoped;
-import javax.inject.Named;
+import br.com.jmsstudio.utils.jsf.SessionModel;
+
 import java.io.Serializable;
 
-@Named
-@SessionScoped
+@SessionModel
 public class TemaBean implements Serializable {
 	
 	private static final long serialVersionUID = 3740536135286026768L;

@@ -3,25 +3,23 @@ package br.com.jmsstudio.livraria.bean;
 import br.com.jmsstudio.livraria.modelo.Livro;
 import br.com.jmsstudio.livraria.modelo.Venda;
 import br.com.jmsstudio.utils.dao.DAO;
+import br.com.jmsstudio.utils.jsf.ViewModel;
 import org.primefaces.model.chart.BarChartModel;
 import org.primefaces.model.chart.ChartSeries;
 
-import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
-import javax.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-@Named
-@ViewScoped
+@ViewModel
 public class VendasBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
     @Inject
-    private DAO<Livro> livroDAO;
+    private DAO<Livro, Integer> livroDAO;
 
 	public BarChartModel getVendasModel() {
 

@@ -3,29 +3,27 @@ package br.com.jmsstudio.livraria.bean;
 import br.com.jmsstudio.livraria.modelo.Autor;
 import br.com.jmsstudio.livraria.modelo.Livro;
 import br.com.jmsstudio.utils.dao.DAO;
+import br.com.jmsstudio.utils.jsf.ViewModel;
 import br.com.jmsstudio.utils.transaction.Transactional;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
-import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
-import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
 
-@Named
-@ViewScoped
+@ViewModel
 public class LivroBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
     @Inject
-	private DAO<Livro> livroDAO;
+	private DAO<Livro, Integer> livroDAO;
 
     @Inject
-    private DAO<Autor> autorDAO;
+    private DAO<Autor, Integer> autorDAO;
 
 	private Livro livro = new Livro();
 

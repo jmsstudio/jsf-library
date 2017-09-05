@@ -5,16 +5,14 @@ import br.com.jmsstudio.livraria.modelo.Usuario;
 import br.com.jmsstudio.utils.jsf.MessageHelper;
 import br.com.jmsstudio.utils.jsf.ScopeMap;
 
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.inject.Model;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
-import javax.inject.Named;
 import java.io.Serializable;
 import java.util.Map;
 
-@Named
-@RequestScoped
+@Model
 public class LoginBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;

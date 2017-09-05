@@ -1,11 +1,18 @@
 package br.com.jmsstudio.utils.dao;
 
 import javax.persistence.EntityManager;
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import java.io.Serializable;
 import java.util.List;
 
-public class DAO<T> implements Serializable {
+/**
+ * DAO Interface.
+ *
+ * @param <T> - Class
+ * @param <I> - Id Type
+ */
+public class DAO<T, I> implements Serializable {
 
 	private final Class<T> classe;
     private final EntityManager em;
@@ -37,16 +44,17 @@ public class DAO<T> implements Serializable {
 		return lista;
 	}
 
-	public T buscaPorId(Integer id) {
+	public T buscaPorId(I id) {
 		T instancia = em.find(classe, id);
 		return instancia;
 	}
 
-	public int contaTodos() {
-		long result = (Long) em.createQuery("select count(n) from livro n")
-				.getSingleResult();
+	public Long contaTodos() {
+		CriteriaBuilder builder = em.getCriteriaBuilder();
+		CriteriaQuery<Long> query = builder.createQuery(Long.class);
+		query.select(builder.count(query.from(classe)));
 
-		return (int) result;
+		return em.createQuery(query).getSingleResult();
 	}
 
 	public List<T> listaTodosPaginada(int firstResult, int maxResults) {
