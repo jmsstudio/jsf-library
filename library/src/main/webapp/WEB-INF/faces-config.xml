@@ -6,8 +6,7 @@
 
 
 	<lifecycle>
-		<phase-listener>br.com.jmsstudio.livraria.util.Autorizador</phase-listener>
-		<phase-listener>br.com.jmsstudio.livraria.util.LogPhaseListener</phase-listener>
+		<phase-listener>br.com.jmsstudio.utils.jsf.phaselistener.GenericPhaseListener</phase-listener>
 	</lifecycle>
 
 </faces-config>

@@ -1,21 +1,24 @@
 package br.com.jmsstudio.livraria.util;
 
+import br.com.jmsstudio.livraria.modelo.Usuario;
+import br.com.jmsstudio.utils.jsf.phaselistener.annotation.After;
+import br.com.jmsstudio.utils.jsf.phaselistener.annotation.Phase;
+
+import javax.enterprise.event.Observes;
 import javax.faces.application.NavigationHandler;
 import javax.faces.context.FacesContext;
 import javax.faces.event.PhaseEvent;
-import javax.faces.event.PhaseId;
-import javax.faces.event.PhaseListener;
+import javax.inject.Inject;
 
-import br.com.jmsstudio.livraria.modelo.Usuario;
+public class Autorizador {
 
-public class Autorizador implements PhaseListener  {
+	@Inject
+    private FacesContext context;
 
-	private static final long serialVersionUID = 1L;
+    @Inject
+    private NavigationHandler handler;
 
-	@Override
-	public void afterPhase(PhaseEvent evento) {
-
-		FacesContext context = evento.getFacesContext();
+	public void autorizar(@Observes @After @Phase(Phase.Phases.RESTORE_VIEW) PhaseEvent event) {
 		String nomePagina = context.getViewRoot().getViewId();
 	
 		System.out.println(nomePagina);
@@ -26,24 +29,11 @@ public class Autorizador implements PhaseListener  {
 		
 		Usuario usuarioLogado = (Usuario) context.getExternalContext().getSessionMap().get("usuarioLogado");
 		
-		if(usuarioLogado != null) {
-			return;
-		}
-		
-		//redirecionamento para login.xhtml
-		
-		NavigationHandler handler = context.getApplication().getNavigationHandler();
-		handler.handleNavigation(context, null, "/login?faces-redirect=true");
-		context.renderResponse();
+		if(usuarioLogado == null) {
+            //redirecionamento para login.xhtml
+
+            handler.handleNavigation(context, null, "/login?faces-redirect=true");
+            context.renderResponse();
+        }
 	} 
-
-	@Override
-	public void beforePhase(PhaseEvent event) {
-	}
-
-	@Override
-	public PhaseId getPhaseId() {
-		return PhaseId.RESTORE_VIEW;
-	}
-
 }
